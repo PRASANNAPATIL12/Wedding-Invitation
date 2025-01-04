@@ -1,11 +1,61 @@
-.card {
+.family-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .family-card {
     border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.card-img-top {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    margin-top: 30px;
+  }
+  
+  .family-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .family-card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .family-card-body {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .family-card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .family-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .family-card-image {
+      height: 200px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .family-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    .family-card-image {
+      height: 180px;
+    }
+  }
