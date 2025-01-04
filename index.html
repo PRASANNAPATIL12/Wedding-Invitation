@@ -336,6 +336,7 @@
 
         <div class="container">
             <div class="row">
+                
                 <div class="col-md-3 col-sm-6 col-xs-12">
 
                     
@@ -410,18 +411,40 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="family-card">
-                    <img src="https://imgur.com/a/3qAnSEC" alt="Family Member 1" class="family-card-image">
-                    <div class="family-card-body">
-                        <h5 class="family-card-title">Name 1</h5>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="family-card">
+                        <img src="img/logo.png" alt="Family Member 1" class="family-card-image">
+                        <div class="family-card-body">
+                            <h5 class="family-card-title">Name 1</h5>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="family-card">
+                        <img src="img/logo.png" alt="Family Member 1" class="family-card-image">
+                        <div class="family-card-body">
+                            <h5 class="family-card-title">Name 1</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="family-card">
+                        <img src="img/logo.png" alt="Family Member 1" class="family-card-image">
+                        <div class="family-card-body">
+                            <h5 class="family-card-title">Name 1</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
             </div>
-            
-                <!-- Repeat for other cards -->
-            </div>
+
+
         </div>
         
 
@@ -740,6 +763,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlPw3GQYI3faa_9mRE6plWuM7xNEmrwH0&callback=initMap"></script>
 <!-- Google Analytics -->
 <script>
+
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
         i[r] = i[r] || function () {
@@ -753,6 +777,43 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-46465113-4', 'auto');
     ga('send', 'pageview');
+
+
+    const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+};
+
+
+// ADDED SCRIPT
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        // When card enters viewport
+        if (entry.isIntersecting) {
+            // Remove animation class first to reset the animation
+            entry.target.classList.remove('animate');
+            // Force reflow
+            void entry.target.offsetWidth;
+            // Add animation class back
+            entry.target.classList.add('animate');
+        }
+    });
+}, observerOptions);
+
+// Observe all cards
+document.querySelectorAll('.family-card').forEach(card => {
+    observer.observe(card);
+});
+
+// Optional: Initialize animation for cards already in viewport
+document.querySelectorAll('.family-card').forEach(card => {
+    if (card.getBoundingClientRect().top < window.innerHeight) {
+        card.classList.add('animate');
+    }
+});
+
 </script>
 </body>
 </html>
