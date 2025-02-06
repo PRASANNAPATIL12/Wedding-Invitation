@@ -1,4 +1,153 @@
 
+
+
+/* video first  */
+
+
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Center vertically on full-page view */
+    padding: 20px;    /* Optional padding for smaller devices */
+    box-sizing: border-box;
+  }
+
+  /* Responsive video container using the aspect ratio hack */
+  .video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Maximum width for desktop */
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px; /* Optional: adds slight rounding to the video corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: subtle shadow for appeal */
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+
+
+
+
+
+
+
+
+
+/* video second */
+
+/* 
+  1) The main container fills the entire viewport (100vh) 
+     and keeps everything in place without affecting other elements on the page.
+*/
+.bg-video-section-rotated {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000; /* Fallback background color if video fails to load */
+  }
+  
+  /*
+    2) This container rotates the video by -90deg, ensuring it fully covers 
+       the 16:9 space without black bars. The transform-origin is center.
+  */
+  .bg-video-container-rotated {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    transform-origin: center center;
+    /*
+      We scale to ~178% so that the 9:16 rotated video completely 
+      covers a 16:9 viewport. Adjust if needed for different aspect ratios.
+    */
+    width: 177.78%;
+    height: 177.78%;
+  }
+  
+  /* 3) Make the iframe fill its container */
+  .bg-video-container-rotated iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    pointer-events: none; /* Overlay text is clickable, if needed */
+  }
+  
+  /*
+    4) Overlay styling:
+       - Placed outside the rotated container so it remains horizontal.
+       - Absolute positioning to center it on the screen.
+       - Includes a fade-in animation for a more appealing effect.
+  */
+  .bg-video-overlay-rotated {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    font-family: "Times New Roman", serif; /* Choose a font that matches your theme */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 1;
+    animation: fadeIn 1.5s ease-out forwards;
+  }
+  
+  /* Headline styling */
+  .bg-video-overlay-rotated h1 {
+    margin: 0;
+    font-size: 3em;
+  }
+  
+  /* Video quality label styling (easily customizable) */
+  .video-quality {
+    margin-top: 0.5em;
+    font-size: 1.2em;
+    opacity: 0.8;
+  }
+  
+  /* Simple fade-in keyframes for overlay elements */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  /* 5) Responsive adjustments for smaller screens */
+  @media (max-width: 600px) {
+    .bg-video-overlay-rotated h1 {
+      font-size: 2em;
+    }
+    .video-quality {
+      font-size: 1em;
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 #video-bg {
     position: relative;
     width: 100%;
@@ -37,3 +186,14 @@
     font-weight: normal;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add text shadow for better readability */
 }
+
+
+
+
+
+
+
+
+
+
+
